@@ -174,6 +174,24 @@
             font-size: 11px;
         }
 
+        /* TODO: Implement system tray icons (volume, network, etc.)
+           Windows 98 typically shows several system icons in the tray area.
+           Each icon should have hover states and click actions to show relevant dialogs. */
+        .tray-icons {
+            display: flex;
+            margin-right: 5px;
+        }
+
+        /* TODO: Add quick launch area in taskbar
+           Windows 98 has a section between the Start button and taskbar items for quick launch icons.
+           This area needs proper styling and functionality to launch pinned applications. */
+        .quick-launch {
+            display: flex;
+            height: 100%;
+            padding: 2px;
+            gap: 2px;
+        }
+
         /* Start Menu */
         .start-menu {
             position: fixed;
@@ -305,6 +323,22 @@
             height: calc(100vh - 28px) !important;
             transform: none !important;
         }
+
+        /* TODO: Implement window resize handles
+           Windows 98 allows resizing from all edges and corners.
+           Need to add 8 resize handles (4 corners, 4 edges) and cursor styling. */
+        .resize-handle {
+            position: absolute;
+            z-index: 1000;
+        }
+        .resize-n { top: -3px; left: 0; right: 0; height: 5px; cursor: n-resize; }
+        .resize-e { top: 0; right: -3px; bottom: 0; width: 5px; cursor: e-resize; }
+        .resize-s { bottom: -3px; left: 0; right: 0; height: 5px; cursor: s-resize; }
+        .resize-w { top: 0; left: -3px; bottom: 0; width: 5px; cursor: w-resize; }
+        .resize-ne { top: -3px; right: -3px; width: 10px; height: 10px; cursor: ne-resize; }
+        .resize-se { bottom: -3px; right: -3px; width: 10px; height: 10px; cursor: se-resize; }
+        .resize-sw { bottom: -3px; left: -3px; width: 10px; height: 10px; cursor: sw-resize; }
+        .resize-nw { top: -3px; left: -3px; width: 10px; height: 10px; cursor: nw-resize; }
 
         .window-titlebar {
             height: 18px;
@@ -494,6 +528,23 @@
             color: white;
         }
 
+        /* TODO: Implement menu dropdowns for window menu bars
+           Each window menu item should have a dropdown with appropriate options.
+           These need proper styling and event handling. */
+        .window-menu-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            display: none;
+            background-color: #c0c0c0;
+            border: 1px solid;
+            border-top-color: #dfdfdf;
+            border-left-color: #dfdfdf;
+            border-right-color: #808080;
+            border-bottom-color: #808080;
+            z-index: 1000;
+        }
+
         .window-toolbar {
             display: flex;
             padding: 4px;
@@ -559,6 +610,37 @@
             background-color: #ffffff;
             padding: 2px 4px;
             font-size: 11px;
+        }
+
+        /* TODO: Implement address bar dropdown functionality
+           Windows 98 Explorer has a dropdown button in the address bar.
+           This should show navigation history or folder hierarchy. */
+        .address-dropdown {
+            width: 16px;
+            height: 20px;
+            border-top: 1px solid #808080;
+            border-left: 1px solid #808080;
+            border-bottom: 1px solid #ffffff;
+            border-right: 1px solid #ffffff;
+            background-color: #c0c0c0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 1px;
+            cursor: pointer;
+        }
+
+        /* TODO: Implement view options toolbar
+           Explorer windows should have a view toolbar with options like:
+           - Details view
+           - List view
+           - Small icons
+           - Large icons */
+        .view-toolbar {
+            display: flex;
+            padding: 4px;
+            background-color: #c0c0c0;
+            border-bottom: 1px solid #808080;
         }
 
         .window-contents {
@@ -642,6 +724,18 @@
         .ie-text small {
             font-size: 12px;
             color: #808080;
+        }
+
+        /* TODO: Implement Internet Explorer browsing functionality
+           Add a render area for web content, with:
+           - Page loading indicator
+           - Error handling for invalid URLs
+           - Basic rendering of HTML */
+        .ie-browser-content {
+            width: 100%;
+            height: 100%;
+            border: none;
+            background-color: #ffffff;
         }
 
         /* Notepad */
@@ -917,12 +1011,83 @@
             display: none;
         }
 
+        /* TODO: Implement context menus for desktop and Explorer items
+           Windows 98 has detailed context menus that appear on right-click.
+           These should be styled properly and contain appropriate options. */
+        .context-menu {
+            position: absolute;
+            background-color: #c0c0c0;
+            border-top: 1px solid #dfdfdf;
+            border-left: 1px solid #dfdfdf;
+            border-right: 1px solid #404040;
+            border-bottom: 1px solid #404040;
+            box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            padding: 2px;
+            z-index: 1000;
+            display: none;
+        }
+
+        /* TODO: Implement desktop area selection (rubber-band)
+           Windows 98 allows users to drag-select multiple desktop icons.
+           This requires styles for the selection area and multi-selected icons. */
+        .selection-box {
+            position: absolute;
+            border: 1px dashed #000;
+            background-color: rgba(0, 0, 255, 0.1);
+            z-index: 50;
+            display: none;
+        }
+
         /* Make the entire layout responsive */
         @media (max-width: 800px) {
             .window {
                 max-width: 90vw;
                 max-height: 80vh;
             }
+        }
+
+        /* TODO: Implement file upload/download UI
+           In a real Windows 98, file operations would show progress dialogs.
+           These need proper styling to match the Windows 98 appearance. */
+        .progress-dialog {
+            width: 300px;
+        }
+
+        .progress-bar-container {
+            height: 20px;
+            border: 1px solid #808080;
+            background-color: white;
+            margin: 10px 0;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background-color: #000080;
+            width: 0%;
+        }
+
+        /* TODO: Implement properties dialog styling
+           Windows 98 file/folder properties dialogs have a specific style with tabs.
+           These need proper implementation to match Windows 98 UI. */
+        .properties-dialog {
+            width: 350px;
+        }
+
+        .properties-tabs {
+            display: flex;
+            margin-bottom: 10px;
+        }
+
+        .properties-tab {
+            padding: 4px 10px;
+            border: 1px solid #808080;
+            margin-right: 2px;
+            cursor: pointer;
+        }
+
+        .properties-tab.active {
+            background-color: #c0c0c0;
+            border-bottom: none;
         }
     </style>
 </head>
@@ -954,6 +1119,19 @@
         <div class="icon-text">Notepad</div>
     </div>
 </div>
+
+<!-- TODO: Implement desktop right-click context menu
+     Should include options like:
+     - Arrange Icons
+     - Line Up Icons
+     - Refresh
+     - Paste
+     - New (with submenu)
+     - Properties -->
+
+<!-- TODO: Implement desktop selection area (rubber-band)
+     This should be a draggable rectangle that allows selecting multiple icons -->
+<div class="selection-box"></div>
 
 <!-- Start Menu -->
 <div class="start-menu" id="startMenu">
@@ -1133,6 +1311,8 @@
             </div>
         </div>
     </div>
+    <!-- TODO: Implement resize handlers for this window
+         Add 8 resize handles (4 corners, 4 sides) to allow window resizing -->
 </div>
 
 <!-- My Computer Window -->
@@ -1222,6 +1402,7 @@
             </div>
         </div>
     </div>
+    <!-- TODO: Implement resize handlers for all windows -->
 </div>
 
 <!-- Internet Explorer Window -->
@@ -1619,12 +1800,62 @@
     </div>
 </div>
 
+<!-- TODO: Implement Print dialog
+     Windows 98 has a standard Print dialog that should be displayed
+     when the Print option is selected from the File menu. -->
+<div class="dialog" id="print-dialog" style="width: 400px; display: none;">
+    <div class="dialog-titlebar">Print</div>
+    <div class="dialog-content">
+        <!-- Print dialog content would go here -->
+    </div>
+    <div class="dialog-buttons">
+        <div class="btn" id="print-ok-btn">Print</div>
+        <div class="btn" id="print-cancel-btn">Cancel</div>
+    </div>
+</div>
+
+<!-- TODO: Implement File Open dialog
+     Similar to Save As dialog but for opening files. Should show
+     the file system and allow navigation. -->
+<div class="dialog saveas-dialog" id="open-dialog" style="display: none;">
+    <div class="dialog-titlebar">Open</div>
+    <div class="dialog-content">
+        <!-- Open dialog content would go here -->
+    </div>
+    <div class="dialog-buttons">
+        <div class="btn" id="open-btn">Open</div>
+        <div class="btn" id="open-cancel-btn">Cancel</div>
+    </div>
+</div>
+
+<!-- TODO: Implement Replace dialog
+     Needed for Notepad's Search > Replace functionality -->
+<div class="dialog" id="replace-dialog" style="width: 350px; display: none;">
+    <div class="dialog-titlebar">Replace</div>
+    <div class="dialog-content">
+        <!-- Replace dialog content would go here -->
+    </div>
+    <div class="dialog-buttons">
+        <div class="btn" id="replace-find-btn">Find Next</div>
+        <div class="btn" id="replace-btn">Replace</div>
+        <div class="btn" id="replace-all-btn">Replace All</div>
+        <div class="btn" id="replace-cancel-btn">Cancel</div>
+    </div>
+</div>
+
 <!-- Taskbar -->
 <div class="taskbar">
     <div class="start-button" id="startBtn">
         <div class="start-button-inner">
             <span>Start</span>
         </div>
+    </div>
+    <div class="taskbar-divider"></div>
+    <!-- TODO: Implement Quick Launch area
+         This area should display icons for frequently used applications
+         and allow one-click launching. -->
+    <div class="quick-launch">
+        <!-- Quick launch icons would go here -->
     </div>
     <div class="taskbar-divider"></div>
     <div class="taskbar-items" id="taskbarItems">
@@ -1635,6 +1866,11 @@
     </div>
     <div class="taskbar-divider"></div>
     <div class="taskbar-tray">
+        <!-- TODO: Implement system tray icons
+             Windows 98 typically shows volume, network, etc. icons in the tray -->
+        <div class="tray-icons">
+            <!-- System tray icons would go here -->
+        </div>
         <div class="tray-time">12:00 PM</div>
     </div>
 </div>
@@ -1776,6 +2012,19 @@
         });
     });
 
+    // TODO: Implement double-click detection for desktop icons
+    // Windows 98 opens applications or folders on double-click, not single click
+    // This requires tracking click times and detecting rapid successive clicks
+
+    // TODO: Implement right-click context menus for desktop icons
+    // Each icon type should have appropriate context menu options
+
+    // TODO: Implement desktop icon selection
+    // Should allow selecting multiple icons with Ctrl+Click or Shift+Click
+
+    // TODO: Implement desktop area selection (rubber-band)
+    // Should allow dragging to select multiple icons at once
+
     // Start menu items
     const menuItems = document.querySelectorAll('.menu-item');
 
@@ -1848,6 +2097,14 @@
 
     // Initial taskbar update
     updateTaskbar();
+
+    // TODO: Implement taskbar right-click functionality
+    // Windows 98 taskbar allows right-clicking for options like:
+    // - Cascade Windows
+    // - Tile Windows Horizontally
+    // - Tile Windows Vertically
+    // - Minimize All Windows
+    // - Properties
 
     // Notepad functionality
     const notepadMenuItems = document.querySelectorAll('.notepad-menu-item');
@@ -2007,6 +2264,12 @@
         }
     }
 
+    // TODO: Implement Replace functionality
+    // Similar to Find but with replace capabilities
+
+    // TODO: Implement Print functionality
+    // Should display a print dialog and handle printing operations
+
     // Go To Line functionality
     document.getElementById('goto-option')?.addEventListener('click', function() {
         overlay.style.display = 'block';
@@ -2078,6 +2341,12 @@
         overlay.style.display = 'none';
     });
 
+    // TODO: Implement File Open functionality
+    // Should display a dialog and allow selecting a file to open
+
+    // TODO: Implement drag and drop functionality
+    // Windows 98 allows drag and drop operations between windows
+
     // About dialog
     document.getElementById('about-option')?.addEventListener('click', function() {
         overlay.style.display = 'block';
@@ -2137,6 +2406,15 @@
         updateTaskbar();
     });
 
+    // TODO: Implement keyboard shortcuts
+    // Windows 98 has many keyboard shortcuts like:
+    // - Alt+Tab for window switching
+    // - Alt+F4 to close windows
+    // - Ctrl+C, Ctrl+V for clipboard
+    document.addEventListener('keydown', function(e) {
+        // Implementation would go here
+    });
+
     // Helper functions
     function getSelectedText() {
         if (!textarea) return '';
@@ -2191,6 +2469,29 @@
             windowTitle.innerHTML = windowTitle.innerHTML.replace(/[^<]* - Notepad/, `${filename} - Notepad`);
         }
     }
+
+    // TODO: Implement window resize functionality
+    // Windows 98 windows can be resized from edges and corners
+    // This requires adding resize handles and implementing the resizing logic
+
+    // TODO: Implement folder navigation in Explorer windows
+    // Should handle clicks on folders to navigate into them
+    // Should update address bar and history
+
+    // TODO: Implement view options in Explorer windows
+    // Should allow switching between different view modes (list, icons, details)
+
+    // TODO: Implement context-sensitive help
+    // Windows 98 has F1 help available in most applications and dialogs
+
+    // TODO: Implement animations for window minimize/maximize
+    // Windows 98 has simple animations when minimizing or maximizing windows
+
+    // TODO: Implement desktop icon grid alignment
+    // Windows 98 aligns desktop icons to an invisible grid
+
+    // TODO: Implement system sounds
+    // Windows 98 plays sounds for various events (opening/closing windows, errors)
 </script>
 </body>
 </html>
