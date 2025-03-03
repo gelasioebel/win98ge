@@ -11,6 +11,8 @@ This was done in a Sunday afternoon, with the help of language models to see wha
 
 ## Features
 
+![win98ge.jpeg](/docs/win98ge.jpeg)
+
 ### Core UI Components
 
 #### Desktop Environment
