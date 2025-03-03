@@ -1,5 +1,6 @@
-# win98ge
-## win ninety eight g e, old school we can see
+# win98ge 
+## https://gelasioebel.github.io/win98ge/
+### win ninety eight g e, old school we can see
 
 ## Introduction
 
