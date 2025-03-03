@@ -1,4 +1,4 @@
- <!--/* $OpenBSD: index.html,v 1.0 2025/03/02 win98ge Exp $ */
+/* $OpenBSD: index.html,v 1.0 2025/03/02 win98ge Exp $ */
  /*
  * Author: GELASIO EBEL JUNIOR <gelasio.e@aluno.ifsc.edu.br>
  * Copyright (c) 2025 GELASIO EBEL JUNIOR <gelasio.e@aluno.ifsc.edu.br>
@@ -33,7 +33,7 @@
  * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
  * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- */-->
+ *
  /*
   * Copyright (c) 2025 GELASIO EBEL JUNIOR <gelasio.e@aluno.ifsc.edu.br>
   *
