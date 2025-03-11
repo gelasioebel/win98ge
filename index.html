@@ -50,12 +50,14 @@
             user-select: none;
         }
 
-        body {
+       body {
             background-color: #008080; /* Windows 98 teal background */
             overflow: hidden;
             width: 100vw;
             height: 100vh;
-            position: relative;
+            position: fixed;
+            top: 0;
+            left: 0;
         }
 
         /* Windows 98 Desktop Icons */
@@ -1503,8 +1505,6 @@
             </div>
         </div>
     </div>
-    <!-- TODO: Implement resize handlers for this window
-         Add 8 resize handles (4 corners, 4 sides) to allow window resizing -->
 </div>
 
 <!-- My Computer Window -->
@@ -2142,13 +2142,20 @@
                 clientY = e.clientY;
             } else if (e.type === 'touchmove') {
                 clientX = e.touches[0].clientX;
-                clientY = e.touches[0].clientY;
+                clientY = e.clientY;
             } else {
                 return;
             }
 
-            window.style.left = (clientX - offsetX) + 'px';
-            window.style.top = (clientY - offsetY) + 'px';
+            let newX = (clientX - offsetX);
+            let newY = (clientY - offsetY);
+
+            // Keep window within bounds
+            newX = Math.min(Math.max(newX, 0), window.innerWidth - window.offsetWidth);
+            newY = Math.min(Math.max(newY, 0), window.innerHeight - window.offsetHeight);
+
+            window.style.left = newX + 'px';
+            window.style.top = newY + 'px';
             window.style.transform = 'none';
         }
 
