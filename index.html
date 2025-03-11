@@ -2132,16 +2132,23 @@
             }
         }
 
-        function drag(e) {
+       function drag(e) {
             if (!isDragging) return;
 
+            let clientX, clientY;
+
             if (e.type === 'mousemove') {
-                window.style.left = (e.clientX - offsetX) + 'px';
-                window.style.top = (e.clientY - offsetY) + 'px';
+                clientX = e.clientX;
+                clientY = e.clientY;
             } else if (e.type === 'touchmove') {
-                window.style.left = (e.touches[0].clientX - offsetX) + 'px';
-                window.style.top = (e.touches[0].clientY - offsetY) + 'px';
+                clientX = e.touches[0].clientX;
+                clientY = e.touches[0].clientY;
+            } else {
+                return;
             }
+
+            window.style.left = (clientX - offsetX) + 'px';
+            window.style.top = (clientY - offsetY) + 'px';
             window.style.transform = 'none';
         }
 
@@ -2153,10 +2160,10 @@
         titleBar.addEventListener('touchstart', startDrag);
 
         document.addEventListener('mousemove', drag);
-        document.addEventListener('touchmove', drag);
+        titleBar.addEventListener('touchmove', drag);
 
         document.addEventListener('mouseup', endDrag);
-        document.addEventListener('touchend', endDrag);
+        titleBar.addEventListener('touchend', endDrag);
 
         // Window controls
         const minimizeBtn = window.querySelector('.minimize-btn');
@@ -2206,8 +2213,10 @@
     // Desktop icons
     const desktopIcons = document.querySelectorAll('.desktop-icon');
 
-    desktopIcons.forEach(icon => {
-        icon.addEventListener('click', function() {
+   desktopIcons.forEach(icon => {
+        icon.addEventListener('touchstart', function(e) {
+            e.preventDefault(); // Prevent mouse events from firing as well
+
             const windowId = this.getAttribute('data-window');
             if (windowId) {
                 const targetWindow = document.getElementById(windowId);
@@ -2220,6 +2229,14 @@
                     updateTaskbar();
                 }
             }
+       });
+
+        icon.addEventListener('touchmove', function(e) {
+            e.preventDefault();
+        });
+
+        icon.addEventListener('touchend', function(e) {
+            e.preventDefault();
         });
     });
 
