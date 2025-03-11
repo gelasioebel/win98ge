@@ -2115,7 +2115,7 @@
         let isDragging = false;
         let offsetX, offsetY;
 
-        titleBar.addEventListener('mousedown', function(e) {
+        function startDrag(e) {
             if (e.target.classList.contains('window-control')) return;
 
             // Bring window to front
@@ -2123,21 +2123,40 @@
             window.classList.add('active');
 
             isDragging = true;
-            offsetX = e.clientX - window.getBoundingClientRect().left;
-            offsetY = e.clientY - window.getBoundingClientRect().top;
-        });
+            if (e.type === 'mousedown') {
+                offsetX = e.clientX - window.getBoundingClientRect().left;
+                offsetY = e.clientY - window.getBoundingClientRect().top;
+            } else if (e.type === 'touchstart') {
+                offsetX = e.touches[0].clientX - window.getBoundingClientRect().left;
+                offsetY = e.touches[0].clientY - window.getBoundingClientRect().top;
+            }
+        }
 
-        document.addEventListener('mousemove', function(e) {
+        function drag(e) {
             if (!isDragging) return;
 
-            window.style.left = (e.clientX - offsetX) + 'px';
-            window.style.top = (e.clientY - offsetY) + 'px';
+            if (e.type === 'mousemove') {
+                window.style.left = (e.clientX - offsetX) + 'px';
+                window.style.top = (e.clientY - offsetY) + 'px';
+            } else if (e.type === 'touchmove') {
+                window.style.left = (e.touches[0].clientX - offsetX) + 'px';
+                window.style.top = (e.touches[0].clientY - offsetY) + 'px';
+            }
             window.style.transform = 'none';
-        });
+        }
 
-        document.addEventListener('mouseup', function() {
+        function endDrag() {
             isDragging = false;
-        });
+        }
+
+        titleBar.addEventListener('mousedown', startDrag);
+        titleBar.addEventListener('touchstart', startDrag);
+
+        document.addEventListener('mousemove', drag);
+        document.addEventListener('touchmove', drag);
+
+        document.addEventListener('mouseup', endDrag);
+        document.addEventListener('touchend', endDrag);
 
         // Window controls
         const minimizeBtn = window.querySelector('.minimize-btn');
